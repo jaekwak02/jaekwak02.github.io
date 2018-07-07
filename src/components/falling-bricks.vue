@@ -36,26 +36,6 @@ export default {
 		}
 	},
 	methods: {
-		beforeEnter: function(el) {
-			
-		},
-		enter: function(el, done) {
-
-			done();
-		},
-		afterEnter: function(el) {
-
-		},
-		beforeLeave: function(el) {
-
-		},
-		leave: function(el, done) {
-
-			done();
-		},
-		afterLeave: function(el) {
-
-		},
 		CreateLayers: function(count) {
 			for (var i = 0; i < count; i++) {
 				this.layers.push({

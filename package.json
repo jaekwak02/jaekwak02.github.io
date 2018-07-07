@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "deploy": "npm run build; push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
     "@tweenjs/tween.js": "^17.2.0",
@@ -16,6 +17,7 @@
     "@vue/cli-service": "^3.0.0-beta.15",
     "node-sass": "^4.9.1",
     "sass-loader": "^7.0.3",
+    "vue-gh-pages": "^1.16.3",
     "vue-template-compiler": "^2.5.16"
   },
   "browserslist": [
