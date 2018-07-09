@@ -1,5 +1,5 @@
 <template>
-	<div class="falling-bricks">
+	<div class="animated-hex-pattern">
 		<svg viewBox="0 0 100 100" class="visual">
 			<g v-for="layer in layers" :key="layer.id">
 				<g v-for="(side, sideIndex) in layer.sides" :key="side.id">
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { EventBus } from '../EventBus';
 var TWEEN = require('@tweenjs/tween.js')
 
 function animate(time) {
@@ -43,9 +44,26 @@ export default {
 					sides: []
 				});
 			}
+		},
+		AnimateHex: function() {
+			console.log('testing');
+
+			var t = this;
+			var translation = { translation: 0 }
+			new TWEEN.Tween(translation)
+				.to({ translation: 10 }, 2000)
+				.easing(TWEEN.Easing.Quadratic.Out)
+				.onUpdate(function() {
+					for (var i = 1; i < 3; i++) {
+						t.layers[0].sides[i].polygons.forEach(p => p.translation = translation.translation);
+					}
+				})
+				.start();
 		}
 	},
 	created: function() {
+
+		EventBus.$on('animate-hex', this.AnimateHex);
 
 		this.CreateLayers(4);
 
@@ -57,6 +75,7 @@ export default {
 		}
 
 		var t = this;
+		
 		var centerTranslation = {
 			translation: 20
 		}
@@ -108,8 +127,6 @@ export default {
 			})
 			.start();
 
-		var layer3rotation = { rotation: 0 };
-
 		var layer4translation = { translation: 10 };
 		new TWEEN.Tween(layer4translation)
 			.to({ translation: 30 }, 1500)
@@ -120,6 +137,7 @@ export default {
 			.start();
 	}
 }
+
 function CreateLayer4(rotation) {
 	var polygons = [];
 	var rt3 = Math.sqrt(3);
@@ -222,54 +240,36 @@ function CreatePolygonString(points) {
 }
 
 
+var minR = 50;
+var maxR = 100;
 
-var baseR = 50;
-var baseG = 128;
-var baseB = 128;
-var baseA = 200;
+var minG = 0;
+var maxG = 255;
 
-var spreadR = 30;
-var spreadG = 127;
-var spreadB = 127;
-var spreadA = 0;
-Number.prototype.clamp = function(min, max) {
-	return Math.min(Math.max(this, min), max);
-}
+var minB = 150;
+var maxB = 230;
+
 function GenerateColor() {
-	var r = (baseR + spreadR * Math.random()).clamp(0, 255);
-	var g = (baseG + spreadG * Math.random()).clamp(0, 255);
-	var b = (baseB + spreadB * Math.random()).clamp(0, 255);
-	var a = (baseA + spreadA * Math.random()).clamp(0, 255);
-	return `rgba(${r}, ${g}, ${b}, ${a})`;
+	var r = Math.round(minR + (maxR - minR) * Math.random());
+	var g = Math.round(minG + (maxG - minG) * Math.random());
+	var b = Math.round(minB + (maxB - minB) * Math.random());
+	return `rgb(${r}, ${g}, ${b})`;
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+.animated-hex-pattern {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
 
+	background-color: rgb(30, 30, 30);
 
-	.falling-bricks {
-		position: fixed;
-		top: 0px;
-		left: 0px;
-		right: 0px;
-		bottom: 0px;
-
-		background-color: rgb(50, 50, 50);
-
-		.visual {
-			width: 100%;
-			height: 100%;
-		}
+	.visual {
+		width: 100%;
+		height: 100%;
 	}
-
-	.side-enter {
-		transform: rotateZ(30deg);
-	}
-	.side-enter-to {
-		transform: rotateZ(0deg);
-	}
-	.side-enter-active {
-		transition: all 1s 1s;
-		
-	}
+}
 </style>
