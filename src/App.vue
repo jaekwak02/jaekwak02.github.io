@@ -26,10 +26,6 @@
 								Technical Skills
 							</div>
 							<div class="divider-block"></div>
-							<div class="section-subheader">
-								My hobbies include web programming and game development.
-								I love working in JavaScript, both frontend and backend.
-							</div>
 						</div>
 						<div class="technical-skills">
 							<div class="technical-skills-body">
@@ -51,7 +47,7 @@
 									</div>
 								</div>
 
-								<div class="skill-block-2">
+								<div class="skill-block-1">
 									<div class="skill">
 										&bull; Vue.js
 									</div>
@@ -66,7 +62,7 @@
 									</div>
 								</div>
 
-								<div class="skill-block-3">
+								<div class="skill-block-1">
 									<div class="skill">
 										&bull; Node.js
 									</div>
@@ -150,9 +146,9 @@
 								Personal Projects
 							</div>
 							<div class="divider-block"></div>
-							<div class="section-subheader">
+							<!-- <div class="section-subheader">
 								I enjoy programming not only as a career path, but as a hobby. Here are some of the projects I have started.
-							</div>
+							</div> -->
 						</div>
 
 						<div class="project-display">
@@ -261,7 +257,7 @@ export default {
 				{
 					header: 'Binder - Chrome Extension',
 					subheader: `
-					My first ever project in web development - a Chrome Extension for saving sets of tabs, written in vanilla HTML5, CSS3, and JavaScript.
+					My first project in web development - a Chrome Extension for saving sets of tabs, written in vanilla HTML5, CSS3, and JavaScript.
 					I designed a custom drag + drop bookmark manager as a way to create the tab sets.
 					It was poorly designed and the code was terribly written, but it served as a great learning experience for me.`,
 					tools: 'HTML5, CSS3, JavaScript',
@@ -272,7 +268,7 @@ export default {
 				{
 					header: '2D Platformer in Unity',
 					subheader: `
-					An action platformer written in C# using UnityEngine, and my first ever programming project outside of class.
+					An action platformer written in C# using UnityEngine, and my first programming project outside of class.
 					This project required me to think critically about character control, the game lifecycle, scene transitions, interactable game objects, and editor tooling for faster development.
 					I never created a full game, but I created the basics including items and inventory, a development flow for creating skills, and rudimentary enemy AI.`,
 					tools: 'C# in UnityEngine',
@@ -426,15 +422,18 @@ body {
 
 		.skill-block-1 {
 			padding: 15px;
-			background-color: rgb(210, 255, 255);
+			background-color: rgb(220, 255, 255);
+			border-top: 4px solid rgb(130, 200, 200);
+			border-bottom: 4px solid rgb(130, 200, 200);
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, .1);
 		}
 		.skill-block-2 {
 			padding: 15px;
-			background-color: rgb(255, 220, 255);
+			background-color: rgb(180, 255, 255);
 		}
 		.skill-block-3 {
 			padding: 15px;
-			background-color: rgb(220, 255, 230);
+			background-color: rgb(150, 255, 255);
 		}
 	}
 }
